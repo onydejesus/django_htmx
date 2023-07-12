@@ -1,0 +1,20 @@
+<form hx-post="{% url 'book_create' %}"
+        hx-target="#book-list"
+        hx-swap="beforeend"
+        hx-on="htmx:afterRequest: this.remove()"
+        hx-trigger="click from:#submit-all"
+    >
+    <div class="row">
+        <div class="col-4 col-md-3">
+            <label for="{{ form.title.id_for_label}}">{{ form.title.label }}</label>
+            {{ form.title }}
+            <label for="{{ form.number_of_pages.id_for_label}}">{{ form.number_of_pages.label }}</label>
+            {{ form.number_of_pages }}
+        </div>
+        <div class="col-3 align-self-end">
+            <button type="button" class="btn btn-danger"
+                hx-on="click: this.closest('form').remove()">Cancel</button
+            >
+        </div>
+    </div>
+</form>

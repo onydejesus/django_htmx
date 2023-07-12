@@ -1,1 +1,21 @@
-<H1>Hello World!</H1>
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<h1 class="mb-4 text-primary">Add book</h1>
+<div id="create-forms">
+    {% include 'htmx_app/partials/book_create.html' %}
+</div>
+<div class="my-4">
+    <button class="btn btn-success me-2" type="button"
+        hx-get="{% url 'book_create' %}"
+        hx-target="#create-forms"
+        hx-swap="beforeend">+ Add book</button>
+    <button type="submit" class="btn btn-primary" id="submit-all">Submit all</button>
+
+<ul id="book-list">
+    {% for book in books %}
+        {% include 'htmx_app/partials/book_list.html' %}
+    {% endfor %}
+</ul>
+{% endblock %}
